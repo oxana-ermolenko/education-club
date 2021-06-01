@@ -26,7 +26,6 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'semantic-ui-sass', git: 'https://github.com/doabit/semantic-ui-sass.git'
 gem 'devise-semantified', git: 'https://github.com/ajex13/devise-semantified.git'
-
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
