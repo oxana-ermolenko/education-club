@@ -1,0 +1,10 @@
+$font-url: 'http://fonts.useso.com/css?family=Lato:400,700,400italic,700italic&subset=latin';
+$import-google-fonts: false;
+$font-family: 'custom-font-family';
+@import "semantic-ui";
+@import "semantic-ui/collections/menu";
+
+.field_with_errors {
+  @extend .field;
+  @extend .error;
+}
