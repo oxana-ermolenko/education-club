@@ -11,8 +11,9 @@
 
 <h2>Comments</h2>
 <% @article.comments.each do |comment| %>
-  <%= render partial: "comments/comment", locals: {comment: comment} %>
-
+  <div id="messages">
+    <%= render partial: "comments/comment", object: @comments %>
+  </div>
   
 <% end %>
 

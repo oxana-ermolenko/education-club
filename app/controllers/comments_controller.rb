@@ -4,7 +4,8 @@ class CommentsController < ApplicationController
     @comment = @article.comments.create(comment_params)
     @comment.user = current_user
     if @comment.save
-      redirect_to article_path(@rticle)
+      ActionCable.server.broadcast "comments", render(partial: 'comments/comment', object: @comment)
+      #redirect_to article_path(@rticle)
     else
       flash.now[:danger] = "error"
       redirect_to articles_path
