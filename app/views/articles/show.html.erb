@@ -10,21 +10,25 @@
 </ul>
 
 <h2>Comments</h2>
-<% @article.comments.each do |comment| %>
+<% if @article.comments != 0 %>
   <div id="messages">
-    <%= render partial: "comments/comment", object: @comments %>
+    <%=render partial: "comments/comments", object: @comments %>
   </div>
+  <% else %>
+ <h3> No Comments Yet! </h3>
+ <% end %>
   
-<% end %>
 
+ <% if user_signed_in? %>
 <h2>Add a comment:</h2>
-<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+<%= form_for([ @article, @comment ], remote: true) do |form| %>
   
   <p>
-    <%= form.label :body %><br>
+    <%= form.label :body, "Comment" %><br>
     <%= form.text_area :body %>
   </p>
   <p>
-    <%= form.submit %>
+    <%= form.submit "Submit" %>
   </p>
+<% end %>
 <% end %>

@@ -1,14 +1,14 @@
 class CommentsController < ApplicationController
   def create
     @article = Article.find(params[:article_id])
-    @comment = @article.comments.create(comment_params)
+    @comment = @article.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
       ActionCable.server.broadcast "comments", render(partial: 'comments/comment', object: @comment)
       #redirect_to article_path(@rticle)
     else
       flash.now[:danger] = "error"
-      redirect_to articles_path
+      redirect_to :back
     end
   end
 
