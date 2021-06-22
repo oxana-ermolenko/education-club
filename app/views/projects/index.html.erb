@@ -1,14 +1,25 @@
-<h1>Projects</h1>
+<div class="ui card">
+  <div class="content">
+    <div class="header">Projects</div>
+  </div>    
+  <%= link_to 'New Project', new_project_path, class: "ui btn" %>
+  
 
-<ul>
   <% @projects.each do |project| %>
-    <li>
-      <%= link_to project.title, project %>
-    
-    </li>
+    <%= link_to project, class: 'text-decoration-none' do %>  
+      <div class="ui sub header">
+        <%= project.title %>
+      </div>
+      <div class="ui small feed">
+        <%= project.details %>
+      </div>
+          
+          (<%= project.total_tasks%> tasks)
+       
+      </div>
+    <% end %>
   <% end %>
-</ul>
-
-<%= link_to "New Project", new_project_path %>
+  
+</div>
 
   

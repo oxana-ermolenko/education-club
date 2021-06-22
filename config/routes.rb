@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   get '/chat', to: 'chatrooms#index'
   resources :messages, only: [:create]
   resources :user_projects
-  resources :projects
+  resources :projects do
+    resources :tasks
+  end
 end

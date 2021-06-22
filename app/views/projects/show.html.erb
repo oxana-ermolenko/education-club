@@ -1,10 +1,62 @@
-<h1><%= @project.title %></h1>
+  
+<%= link_to 'Back', projects_path, class: "ui btn" %>
+<div class="ui card">
+  <div class="content">
+    <div class="header"><%= @project.title %></div>
+      
+    <div>
+      <%= link_to 'Edit', edit_project_path(@project), class:"ui btn" %>
+      <%= link_to 'Destroy', @project, method: :delete, class:"ui btn", data: { confirm: 'Are you sure?' } %>
+    </div>
+    
 
-<p><%= @project.details %></p>
+    <div class="ui sub header"> Add task </div>
 
-<ul>
-  <li><%= link_to "Edit", edit_project_path(@project) %></li>
-  <li><%= link_to "Destroy", project_path(@project),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %></li>
-</ul>
+      <%= form_for([@task.project, @task]) do |f| %>
+      <% if @task.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+        <ul>
+          <% @task.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+      <%= f.hidden_field :status, value: "not started" %>
+      <div class="input-group">
+        <%= f.text_field :name, class: "form-control", placeholder: "Enter Task Name" %>
+        <div class="input-group-append">
+          <%= f.submit class: "ui btn" %>
+        </div>
+      </div>
+      <% end %>
+
+      <h4>Tasks</h4>
+      <% @project.tasks.each do |task|%>
+      <% if task.persisted? %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <span class="badge badge-<%=task.badge_color%> mb-3"><%= task.status %></span>
+            <div>
+              <%= link_to 'Edit', edit_project_task_path(task.project, task), class: "btn btn-warning btn-sm" %>
+              <%= link_to 'Destroy', [task.project, task], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+            </div>
+          </div>
+
+          <h5 class="card-title mb-2">
+            <span><%= task.name %></span>
+
+          </h5>
+          <p><%= task.description %></p>
+
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+
+</div>

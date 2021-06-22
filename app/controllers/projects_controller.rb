@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :users, :add_user]
   
   def index
     @projects = Project.all
@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   def show 
-    #@task = @project.tasks.build
+    @task = @project.tasks.build
   end
 
   def edit
@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.users << current_user
     if @project.save
       redirect_to @project, notice: "Project was successfully created."
     else
@@ -37,6 +38,21 @@ class ProjectsController < ApplicationController
     @project.destroy
     redirect_to projects_url, notice: "Project was successfully desproyed."
   end
+  
+  def add_user
+    @project_user = UserProject.new(user_id: params[:user_id], project_id: @project.id)
+    
+    
+      if @project_user.save
+         redirect_to users_project_url(id: @project.id),
+          notice: "User was successfully added to project" 
+      else
+        redirect_to users_project_url(id: @project.id),
+          error: "User was not added to project" 
+      end
+    end
+ 
+
 
   private
 
