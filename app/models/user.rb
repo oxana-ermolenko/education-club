@@ -10,4 +10,9 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :user_projects
   has_many :projects, through: :user_projects
+
+  def full_name
+    return "#{first_name} #{last_name}" if first_name or last_name
+    'Anonymous'
+  end
 end

@@ -11,7 +11,18 @@
             <%= devise_error_messages! %>
           </div>
 
-
+          <div class="field">
+            <%= f.label :name %>
+            <div class="two fields">
+              <div class="field">
+                <%= f.text_field :first_name, autofocus: true, placeholder: 'First Name' %>
+              </div>
+              <div class="field">
+                <%= f.text_field :last_name, placeholder: 'Last Name'%>
+              </div>
+            </div>
+          </div>
+          
           <div class="field ">
             <%= f.label :email %>
             <%= f.email_field :email, autofocus: true ,placeholder: "john@example.com"%>

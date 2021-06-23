@@ -12,9 +12,11 @@
 
   <body>
     <%= render 'layouts/nav' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    
     <%= yield %>
+    <div class="ui center aligned">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+    
   </body>
 </html>

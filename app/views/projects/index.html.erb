@@ -1,25 +1,44 @@
-<div class="ui card">
-  <div class="content">
-    <div class="header">Projects</div>
-  </div>    
-  <%= link_to 'New Project', new_project_path, class: "ui btn" %>
-  
+<div class="ui grid">
+  <div class="two wide column">
+    <div class="ui vertical fluid tabular menu">
+      <a class="active item">
+        Bio
+      </a>
+      <a class="item">
+        Pics
+      </a>
+      <a class="item">
+        Companies
+      </a>
+      <a class="item">
+        Links
+      </a>
+    </div>
+  </div>
+  <div class="twelve wide stretched column">
 
-  <% @projects.each do |project| %>
-    <%= link_to project, class: 'text-decoration-none' do %>  
-      <div class="ui sub header">
-        <%= project.title %>
+    <div class="ui segment">
+      <div class="ui card">
+        <div class="content">
+          <div class="header">Projects</div>
+        </div>    
+        <%= link_to 'New Project', new_project_path, class: "ui btn" %>
+        <% @projects.each do |project| %>
+          <%= link_to project, class: 'text-decoration-none' do %>  
+            <div class="ui sub header">
+              <%= project.title %>
+            </div>
+            <div class="ui small feed">
+              <%= project.details %>
+            </div>     
+            (<%= project.total_tasks%> tasks)    
+          <% end %>
+        <% end %>    
       </div>
-      <div class="ui small feed">
-        <%= project.details %>
-      </div>
-          
-          (<%= project.total_tasks%> tasks)
-       
-      </div>
-    <% end %>
-  <% end %>
-  
+    </div>
+  </div>
+  <div class="two wide column">
+    <div class="ui segment">
+    </div>
+  </div>
 </div>
-
-  

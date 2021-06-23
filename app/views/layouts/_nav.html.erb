@@ -1,6 +1,6 @@
 <div class="ui top inverted menu">
-  <a href="#" class="item"><strong>BrandName</strong></a>
-  <%= link_to "Home", root_path, class: "active blue item" %>
+  <a href="#" class="item"><strong>Education Club</strong></a>
+  <%= link_to "Home", root_path, class: "active teal item" %>
   <a class="item">
     About
   </a>
@@ -16,6 +16,9 @@
       <i class="sign in icon"></i> Login
     <% end %>
     <% else %>
+    <%= link_to  projects_path , class: "item" do %>
+      <i class="user icon"></i> <%= current_user.full_name %>
+    <% end %>
     <%= link_to  edit_user_registration_path , class: "item" do %>
       <i class="settings icon"></i> Settings
     <% end %>
