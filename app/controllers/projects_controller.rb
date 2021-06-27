@@ -45,10 +45,10 @@ class ProjectsController < ApplicationController
     
     
       if @project_user.save
-         redirect_to users_project_url(id: @project.id),
+         redirect_to users_project_url(id: @project.id, user_id: @project.user_id),
           notice: "User was successfully added to project" 
       else
-        redirect_to users_project_url(id: @project.id),
+        redirect_to users_project_url(id: @project.id, user_id: @project.user_id),
           error: "User was not added to project" 
       end
     end
@@ -62,6 +62,6 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:title, :details)
+      params.require(:project).permit(:title, :details,  user_ids: [])
     end
 end

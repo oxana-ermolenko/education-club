@@ -27,6 +27,11 @@
             <%= f.label :email %>
             <%= f.email_field :email, autofocus: true ,placeholder: "john@example.com"%>
           </div>
+          
+          <div class="field">
+            <%= f.label :avatar %>
+            <%= f.url_field :avatar %>
+          </div>
 
           <div class="field ">
             <%= f.label :password %>
@@ -50,7 +55,7 @@
           </div>
 
           <div class="ui left icon input">
-            <%= f.submit "Sign up" ,class: "ui submit button primary " %>
+            <%= f.submit "Sign up" ,class: "ui submit basic button positive " %>
             <i class="users icon"></i>
           </div>
         <% end %>

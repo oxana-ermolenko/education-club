@@ -17,3 +17,11 @@
 //= require semantic-ui
 //= require semantic-ui/modal
 //= require semantic-ui/dropdown
+
+$(document).on('turbolinks:load', function() {
+  $('.btnModal').on('click', function() {
+    $('.ui.modal')
+      .modal('setting', 'transition', 'vertical flip')
+      .modal('show');
+  });
+});

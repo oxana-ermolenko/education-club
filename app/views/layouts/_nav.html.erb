@@ -1,25 +1,38 @@
-<div class="ui top inverted menu">
+<div class="ui top inverted fixed menu">
   <a href="#" class="item"><strong>Education Club</strong></a>
-  <%= link_to "Home", root_path, class: "active teal item" %>
-  <a class="item">
-    About
-  </a>
-  <a class="item">
-    Contact
-  </a>
+  <% unless user_signed_in?  %>
+    <%= link_to root_path, class: "item" do %>
+      <i class="home icon"></i> Home
+    <% end %>
+  <% else %>
+    <%= link_to projects_path, class: "item" do %>
+      <i class="file altenate icon"></i> Profile
+    <% end %>
+  <% end %>
+  <%= link_to projects_path, class: "item" do %>
+    <i class="gamepad  icon"></i> Project
+  <% end %>
+  <%= link_to articles_path, class: "item" do %>
+    <i class="paper plane icon"></i> Journal
+  <% end %>
+  <%= link_to messages_path, class: "item" do %>
+    <i class="comment alternate icon"></i> Messenger
+  <% end %>
+  
   <div class="right menu">
     <% unless user_signed_in?  %>
-    <%= link_to  new_user_registration_path ,class: "item" do%>
+    <%= link_to  new_user_registration_path, class: "item" do %>
       <i class="signup icon"></i> Sign Up
     <% end %>
     <%= link_to  new_user_session_path, class: "item" do %>
       <i class="sign in icon"></i> Login
     <% end %>
     <% else %>
-    <%= link_to  projects_path , class: "item" do %>
-      <i class="user icon"></i> <%= current_user.full_name %>
+    <%= link_to  projects_path, class: "item" do %>
+      <%= image_tag current_user.avatar, class: 'ui avatar image' %>
+      <%= current_user.full_name %>
     <% end %>
-    <%= link_to  edit_user_registration_path , class: "item" do %>
+    <%= link_to  edit_user_registration_path, class: "item" do %>
       <i class="settings icon"></i> Settings
     <% end %>
 

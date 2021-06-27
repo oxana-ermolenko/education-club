@@ -23,6 +23,11 @@
             <%= f.label :email %>
             <%= f.email_field :email %>
           </div>
+         
+          <div class="field">
+            <%= f.label :avatar %>
+            <%= f.url_field :avatar %>
+          </div>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -50,8 +55,9 @@
           </div>
 
           <div class="actions">
-            <%= f.submit "Update" ,class: "ui submit button primary " %>
+            <%= f.submit "Update" ,class: "ui submit basic button positive " %>
           </div>
+
         <% end %>
         <div class="ui horizontal divider">or</div>
 
