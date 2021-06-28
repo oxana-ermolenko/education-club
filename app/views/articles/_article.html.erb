@@ -1,0 +1,33 @@
+  
+<% obj.each do |article| %>
+  <div class="four wide column">
+    <%= link_to  article_path(article),  class: "ui green card" do %>
+      <div class="content">
+        <div class="header"><%= article.title.capitalize %></div>
+        <div class="meta">
+          <span class="right floated time"><%= time_ago_in_words(article.updated_at) %> ago</span>  
+       
+       
+            <% if article.categories.any? %>
+              <% article.categories.each do |category| %>
+                <div class="category">
+                  <%= category.name %>
+                </div>
+              <% end %>
+            <% end %> 
+        </div>
+        <div class="description">
+          <p><%= truncate(article.body, length: 100) %></p>
+        </div>
+      </div>
+      <div class="extra content">
+        <i class="comment icon"></i>
+        <%= article.total_comments %> comments  
+        <div class="right floated author">
+          <%= image_tag current_user.avatar, class: 'ui avatar image' %> 
+          <%= current_user.full_name %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

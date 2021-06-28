@@ -18,122 +18,36 @@
   <div class="twelve wide stretched column">
     <div class="ui segment">
       <div class="ui grid">
+
         <div class="four wide column">
-          
-            <button class="ui positive basic btnModal button">
-              <i class="paper plane icon"></i>New
-            </button>
-         
+          <button class="ui positive basic btnModal button">
+            <i class="paper plane icon"></i>New
+          </button>
         </div>
-        <div class="four wide column">
-          This is an stretched grid column. This segment will always match the tab height
-        </div>
+
+        
       </div>
 
       <div class="ui grid">
-        
-
-        <div class="four wide column">
-        <%= link_to  new_article_path, class: "ui green card" do %>
-          <div class="content">
-              <div class="header">Cute Dog</div>
-              <div class="meta">
-                <span class="right floated time">2 days ago</span>
-                <span class="category">Animals</span>
-              </div>
-              <div class="description">
-                <p>Transforming text into a talking head, in multiple languages, is another application, one that has proven to be of great interest to museums and educational institutions.
-                — Gil Press, Forbes, 18 June 2021 </p>
-              </div>
-            </div>
-            <div class="extra content">
-              <i class="comment icon"></i>
-              3 comments
-              <i class="heart outline like icon"></i>
-              17 likes
-              <div class="right floated author">
-                <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg"> Matt
-              </div>
-            </div>
-        <% end %>
-          
-        </div>
-
-        <div class="four wide column">
-          <div class="ui green card">
-            <div class="content">
-              <div class="header">Cute Dog</div>
-              <div class="meta">
-                <span class="right floated time">2 days ago</span>
-                <span class="category">Animals</span>
-              </div>
-              <div class="description">
-                <p>The same technology that enables the National Security Agency to monitor people domestically without ever actually eavesdropping can readily help identify 
-                reporters’ sources without reading a text or listening to a phone conversation </p>
-              </div>
-            </div>
-            <div class="extra content">
-            <i class="comment icon"></i>
-            3 comments
-                <i class="heart outline like icon"></i>
-                17 likes
-              
-              
-              <div class="right floated author">
-                <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg"> Matt
-              </div>
-            </div>
-          </div>
-        </div>
-
-        
-
-
+        <%= render 'article', obj: @articles %>
+      </div>
+      <div align="center">
+        <%= will_paginate %>
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
-<ul>
-  <% @articles.each do |article| %>
-    <li>
-      <%= link_to article.title, article %>
-      <p> <%= article.body %> </p>
-      <% if article.categories.any? %>
-          <p>Categories: <%= render article.categories %></p>
-        <% end %>
-    </li>
-  <% end %>
-</ul>
-
-
-
-
-  
 
   <div class="ui test modal ">
   <i class="close icon"></i>
   
   <div class="ui row">
-    <div class="ui four wide column"></div>
-    <div class="ui eight wide column segment">
+    
+    <div class="ui four wide column segment">
       <h2 class="ui center aligned dividing header">New Journal</h2>
       <div class="ui form ">
         <%= render "form" %>
       </div>
     </div>
-  </div> 
-
-  </div>
-
-  
+  </div>  
 
 </div>

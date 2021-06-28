@@ -1,39 +1,124 @@
-
-
-
-
-
-<h1><%= @article.title %></h1>
-
-<p><%= @article.body %></p>
-
-<ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %></li>
-</ul>
-
-<h2>Comments</h2>
-<% if @article.comments != 0 %>
-  <div id="messages">
-    <%=render partial: "comments/comments", object: @comments %>
+<div class="ui grid custom_margin">
+  <div class="two wide column">
+    <div class="ui vertical fluid tabular menu">
+      <a class="active item">
+        Journal
+      </a>
+      <a class="item">
+        Projects
+      </a>
+      <a class="item">
+        Companies
+      </a>
+      <a class="item">
+        Links
+      </a>
+    </div>
   </div>
-  <% else %>
- <h3> No Comments Yet! </h3>
- <% end %>
-  
+  <div class="twelve wide stretched column">
+    <div class="ui segment">
+      <div class="ui grid">
+        <div class="four wide column">
+        
+        <%= link_to  articles_path, class: "ui basic button positive" do %>
+          <i class="angle left icon"></i> Back
+        <% end %>
+        <% if current_user == @article.user %>
+        <button class="ui positive basic btnModalEdit button">
+            <i class="edit icon"></i>Edit
+        </button>
+          
+        <%= link_to  article_path(@article), method: :delete, 
+        data: { confirm: "Are you sure you want to delete this article?" }, class: "ui basic button red" do %>
+          <i class="trash icon"></i> Delete
+        <% end %>
+        <% end %>   
+      </div>  
+    </div>
 
- <% if user_signed_in? %>
-<h2>Add a comment:</h2>
-<%= form_for([ @article, @comment ], remote: true) do |form| %>
+    <div class="ui padded green segment">
+      <h2 class="ui center aligned icon header">
+        <%= image_tag current_user.avatar, class: 'ui avatar image' %>
+        <%= current_user.full_name %>
+      </h2>
+      
+      <div class="ui right aligned">
+        <%= time_ago_in_words(@article.updated_at) %> ago
+      </div>
+
+      <div class="ui left aligned">
+        <% if @article.categories.any? %>
+          <% @article.categories.each do |category| %>
+            <div class="category">
+              <%= category.name %>
+            </div>
+          <% end %>
+        <% end %> 
+      </div>
+        
+      <h2 class="ui center aligned header">
+        <%= @article.title.capitalize %>
+      </h2>
+    
+    <div class="description">
+      <%= @article.body %>
+    </div>
+  </div>
+
+
+    <div class="ui comments">
+      <h3 class="ui dividing header">Comments</h3>
+      <% if @article.comments != 0 %>
+        <% @comments.each do |comment| %>
+          <%= render(partial: 'comments/comment', object: comment) %>
+        <% end %>
+      <% else %>
+        <h3> No Comments Yet! </h3>
+      <% end %>
+     
+      <% if user_signed_in? %>
+      
+        <%= form_for([ @article, @comment ], remote: true, class: 'ui reply form') do |form| %>
+          <div class="field">
+            <%= form.label :body, "Comment" %><br>
+            <%= form.text_area :body %>
+          </div>
+          
+          <div class="actions">
+            <%= form.submit "Add Reply" ,class: "ui submit basic button positive " %>
+          </div>
+        <% end %>
+      <% end %>
+    
+   
+  </div>
+
+
+
+    </div>
+    
   
-  <p>
-    <%= form.label :body, "Comment" %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit "Submit" %>
-  </p>
-<% end %>
-<% end %>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="ui test modal ">
+  <i class="close icon"></i>
+  
+  <div class="ui row">
+    
+    <div class="ui four wide column segment">
+      <h2 class="ui center aligned dividing header">Edit Journal</h2>
+      <div class="ui form ">
+        <%= render "form" %>
+      </div>
+    </div>
+  </div> 
+  </div>

@@ -24,4 +24,9 @@ $(document).on('turbolinks:load', function() {
       .modal('setting', 'transition', 'vertical flip')
       .modal('show');
   });
+  $('.btnModalEdit').on('click', function() {
+    $('.ui.modal')
+      .modal('setting', 'transition', 'vertical flip')
+      .modal('show');
+  });
 });

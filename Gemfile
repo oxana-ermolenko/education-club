@@ -31,7 +31,7 @@ gem 'devise-semantified', git: 'https://github.com/ajex13/devise-semantified.git
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+gem 'will_paginate'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
