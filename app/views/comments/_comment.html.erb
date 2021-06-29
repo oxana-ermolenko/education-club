@@ -1,12 +1,12 @@
 
 <div class="comment">
     <a class="avatar">
-        <%= image_tag current_user.avatar %>
+        <%= image_tag comment.user.avatar %>
     </a>
     <div class="content">
-      <a class="author"><%= current_user.full_name %></a>
+      <a class="author"><%= comment.user.full_name %></a>
       <div class="metadata">
-        <span class="date"> <%= time_ago_in_words(@article.updated_at) %> ago</span>
+        <span class="date"> <%= time_ago_in_words(comment.updated_at) %> ago</span>
       </div>
       <div class="text">
         <%= comment.body %>

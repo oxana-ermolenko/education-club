@@ -38,7 +38,7 @@
 
     <div class="ui padded green segment">
       <h2 class="ui center aligned icon header">
-        <%= image_tag current_user.avatar, class: 'ui avatar image' %>
+        <%= image_tag @article.user.avatar, class: 'ui avatar image' %>
         <%= current_user.full_name %>
       </h2>
       
@@ -69,9 +69,9 @@
     <div class="ui comments">
       <h3 class="ui dividing header">Comments</h3>
       <% if @article.comments != 0 %>
-        <% @comments.each do |comment| %>
-          <%= render(partial: 'comments/comment', object: comment) %>
-        <% end %>
+        <div id="messages">
+          <%= render(partial: 'comments/comments', object: @comments) %>
+        </div>
       <% else %>
         <h3> No Comments Yet! </h3>
       <% end %>

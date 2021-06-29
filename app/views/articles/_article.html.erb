@@ -24,8 +24,8 @@
         <i class="comment icon"></i>
         <%= article.total_comments %> comments  
         <div class="right floated author">
-          <%= image_tag current_user.avatar, class: 'ui avatar image' %> 
-          <%= current_user.full_name %>
+          <%= image_tag article.user.avatar, class: 'ui avatar image' %> 
+          <%= article.user.full_name %>
         </div>
       </div>
     <% end %>

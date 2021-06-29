@@ -1,13 +1,14 @@
 class ArticlesController < ApplicationController
-  
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+
   def index
     @articles = Article.paginate(page: params[:page], per_page: 8)
     @article = Article.new
-    
+   
   end
 
   def show
+   
     @comment = Comment.new
     @comments = @article.comments.all
   end
@@ -32,8 +33,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    
-
     if @article.update(article_params)
       flash[:success] = "Article was updated successfully!"
       redirect_to article_path(@article)

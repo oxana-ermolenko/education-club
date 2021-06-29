@@ -31,8 +31,8 @@
       <div class="ui grid">
         <%= render 'article', obj: @articles %>
       </div>
-      <div align="center">
-        <%= will_paginate %>
+      <div class="ui two column centered grid custom_margin_bottom">
+      <%= will_paginate @articles, renderer: WillPaginateSemanticUi::ActionView::Renderer %>
       </div>
     </div>
   </div>
