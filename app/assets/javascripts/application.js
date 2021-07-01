@@ -17,6 +17,7 @@
 //= require semantic-ui
 //= require semantic-ui/modal
 //= require semantic-ui/dropdown
+//= require cable
 
 $(document).on('turbolinks:load', function() {
   $('.btnModal').on('click', function() {
@@ -25,8 +26,15 @@ $(document).on('turbolinks:load', function() {
       .modal('show');
   });
   $('.btnModalEdit').on('click', function() {
-    $('.ui.modal')
+    $('.ui.modal.edit')
       .modal('setting', 'transition', 'vertical flip')
       .modal('show');
   });
+  $('.btnModalAdd').on('click', function() {
+    $('.ui.modal.add')
+      .modal('setting', 'transition', 'vertical flip')
+      .modal('show');
+  });
+  $('.ui.dropdown').dropdown();
+  $('.activating.element').popup();
 });

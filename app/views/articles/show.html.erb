@@ -39,7 +39,7 @@
     <div class="ui padded green segment">
       <h2 class="ui center aligned icon header">
         <%= image_tag @article.user.avatar, class: 'ui avatar image' %>
-        <%= current_user.full_name %>
+        <%= @article.user.full_name %>
       </h2>
       
       <div class="ui right aligned">
@@ -78,26 +78,19 @@
      
       <% if user_signed_in? %>
       
-        <%= form_for([ @article, @comment ], remote: true, class: 'ui reply form') do |form| %>
+        <%= form_for([ @article, @comment ], class: 'ui reply form') do |form| %>
           <div class="field">
-            <%= form.label :body, "Comment" %><br>
-            <%= form.text_area :body %>
+            
+            <%= form.text_area :body, placeholder: "Enter a comment" %>
           </div>
           
           <div class="actions">
             <%= form.submit "Add Reply" ,class: "ui submit basic button positive " %>
           </div>
         <% end %>
-      <% end %>
-    
-   
-  </div>
-
-
-
+      <% end %> 
     </div>
-    
-  
+  </div>
 </div>
 
 
@@ -121,4 +114,4 @@
       </div>
     </div>
   </div> 
-  </div>
+</div>

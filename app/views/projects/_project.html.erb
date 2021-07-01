@@ -1,0 +1,24 @@
+<% obj.each do |project| %>
+  <div class="four wide column">
+    <%= link_to  project_path(project),  class: "ui green card" do %>
+      <div class="content">
+        <div class="header"><%= project.title %></div>
+        <div class="meta">
+          <span class="right floated time"><%= time_ago_in_words(project.updated_at) %> ago</span>             
+        </div>
+        <div class="description">
+          <p><%= truncate(project.details, length: 100) %></p>
+        </div>
+      </div>
+      <div class="extra content">
+        <i class="comment icon"></i>
+        <%= project.total_tasks %> tasks  
+        <div class="right floated author">
+          <% project.users.each do |user| %>
+            <%= image_tag user.avatar, class: 'ui avatar image activating element', data: {title: user.full_name} %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

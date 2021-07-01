@@ -5,40 +5,55 @@
         Profile
       </a>
       <a class="active item">
-       Projects
+        Projects
       </a>
       <a class="item">
-        My Journal
+        My Projects
       </a>
       <a class="item">
         Messenger
       </a>
     </div>
   </div>
-  <div class="twelve wide stretched column">
 
+  <div class="twelve wide stretched column">
     <div class="ui segment">
-      <div class="ui card">
-        <div class="content">
-          <div class="header">Projects</div>
-        </div>    
-        <%= link_to 'New Project', new_project_path, class: "ui btn" %>
-        <% @projects.each do |project| %>
-          <%= link_to project, class: 'text-decoration-none' do %>  
-            <div class="ui sub header">
-              <%= project.title %>
-            </div>
-            <div class="ui small feed">
-              <%= project.details %>
-            </div>     
-            (<%= project.total_tasks%> tasks)    
-          <% end %>
-        <% end %>    
+      <div class="ui grid">
+
+        <div class="four wide column">
+          <button class="ui positive basic btnModal button">
+            <i class="paper plane icon"></i>New
+          </button>
+        </div>
+
+        
+      </div>
+
+      <div class="ui grid">
+        <%= render 'project', obj: @projects %>
+      </div>
+      <div class="ui two column centered grid custom_margin_bottom">
+      <%= will_paginate @projects, renderer: WillPaginateSemanticUi::ActionView::Renderer %>
       </div>
     </div>
   </div>
-  <div class="two wide column">
-    <div class="ui segment">
+
+  <div class="ui test modal ">
+    <i class="close icon"></i>
+    <div class="ui row">
+    <div class="ui four wide column segment">
+      <h2 class="ui center aligned dividing header">New Project</h2>
+      <div class="ui form ">
+        <%= render "form" %>
+      </div>
     </div>
-  </div>
+  </div>  
+
 </div>
+
+
+
+
+
+
+  

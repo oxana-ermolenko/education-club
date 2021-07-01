@@ -1,62 +1,126 @@
-  
-<%= link_to 'Back', projects_path, class: "ui btn" %>
-<div class="ui card">
-  <div class="content">
-    <div class="header"><%= @project.title %></div>
-      
-    <div>
-      <%= link_to 'Edit', edit_project_path(@project), class:"ui btn" %>
-      <%= link_to 'Destroy', @project, method: :delete, class:"ui btn", data: { confirm: 'Are you sure?' } %>
-    </div>
-    
-
-    <div class="ui sub header"> Add task </div>
-
-      <%= form_for([@task.project, @task]) do |f| %>
-      <% if @task.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
-        <ul>
-          <% @task.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-      <% end %>
-      <%= f.hidden_field :status, value: "not started" %>
-      <div class="input-group">
-        <%= f.text_field :title, class: "form-control", placeholder: "Enter Task Name" %>
-        <div class="input-group-append">
-          <%= f.submit class: "ui btn" %>
-        </div>
-      </div>
-      <% end %>
-
-      <h4>Tasks</h4>
-      <% @project.tasks.each do |task|%>
-      <% if task.persisted? %>
-      <div class="card mb-3">
-        <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <span class="badge badge-<%=task.badge_color%> mb-3"><%= task.status %></span>
-            <div>
-              <%= link_to 'Edit', edit_project_task_path(task.project, task), class: "btn btn-warning btn-sm" %>
-              <%= link_to 'Destroy', [task.project, task], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
-            </div>
-          </div>
-
-          <h5 class="card-title mb-2">
-            <span><%= task.name %></span>
-
-          </h5>
-          <p><%= task.description %></p>
-
-        </div>
-      </div>
-      <% end %>
-      <% end %>
+<div class="ui grid custom_margin">
+  <div class="two wide column">
+    <div class="ui vertical fluid tabular menu">
+      <a class="item">
+        Profile
+      </a>
+      <a class="active item">
+        Projects
+      </a>
+      <a class="item">
+        My Projects
+      </a>
+      <a class="item">
+        Messenger
+      </a>
     </div>
   </div>
+  <div class="twelve wide stretched column">
+    <div class="ui segment">
+      <div class="ui grid">
+        <div class="four wide column">
+          <%= link_to  projects_path, class: "ui basic button positive" do %>
+            <i class="angle left icon"></i> Back
+          <% end %>
+          <% if @project.users.include? current_user %>
+            <button class="ui positive basic btnModalEdit button">
+                <i class="edit icon"></i>Edit
+            </button>
+          <% end %>   
+        </div> 
 
+        <div class="four wide column">
+          <h2 class="ui header">
+            <%= @project.title.capitalize %>
+          </h2>
+        </div>
+
+        <div class="four wide column">
+          <% if @project.users.include? current_user %>
+            <button class="ui icon positive basic btnModalAdd button">
+                <i class="add icon"></i>
+            </button>
+          <% end %>
+          <% if @project.users.any? %>
+            <% @project.users.each do |user| %>
+              <%= image_tag user.avatar, class: 'ui avatar image activating element', data: {title: user.full_name} %>
+            <% end %>
+          <% end %>  
+        </div>
+
+      <div class="four wide column">
+        <div class="ui right aligned">
+          <%= time_ago_in_words(@project.updated_at) %> ago
+        </div>
+      </div>
+    </div>
+
+    <div class="ui padded green segment">
+      <div class="description">
+        <%= @project.details %>
+      </div>
+    </div>
+  
+      <div class="ui comments">
+        <h3 class="ui dividing header">Tasks</h3>
+        <% if @project.tasks != 0 %>
+          <div id="messages">
+            <%= render(partial: 'tasks/tasks', object: @task) %>
+          </div>
+        <% else %>
+          <h3> No Comments Yet! </h3>
+        <% end %>
+   
+        <% if user_signed_in? %>
+          <%= form_for([ @project, @task ], class: 'ui reply form') do |form| %>
+            <div class="field">
+              <%= form.text_area :title, placeholder: "Enter a task" %>
+            </div>
+            <div class="actions">
+              <%= form.submit "Add Reply" ,class: "ui submit basic button positive " %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+
+<div class="ui modal edit ">
+  <i class="close icon"></i>
+  <div class="ui row">
+    <div class="ui four wide column segment">
+      <h2 class="ui center aligned dividing header">Edit Project</h2>
+      <div class="ui form ">
+        <%= render "form" %>
+      </div>
+    </div>
+  </div> 
+</div>
+
+<div class="ui modal add">
+  <i class="close icon"></i>
+  <div class="ui row">
+    <div class="ui four wide column segment">
+      <h2 class="ui center aligned dividing header">Add User</h2>
+      <div class="ui form ">
+        <%= render "add_form" %>
+      </div>
+    </div>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

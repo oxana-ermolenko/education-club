@@ -3,7 +3,8 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy, :users, :add_user]
   
   def index
-    @projects = Project.all
+    @projects = Project.paginate(page: params[:page], per_page: 8)
+    @project = Project.new
   end
 
   def new
@@ -12,6 +13,8 @@ class ProjectsController < ApplicationController
 
   def show 
     @task = @project.tasks.build
+    @tasks = @project.tasks.all
+    
   end
 
   def edit
@@ -51,7 +54,7 @@ class ProjectsController < ApplicationController
         redirect_to users_project_url(id: @project.id, user_id: @project.user_id),
           error: "User was not added to project" 
       end
-    end
+  end
  
 
 

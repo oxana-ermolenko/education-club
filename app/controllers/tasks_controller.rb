@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
+ 
   
-  before_action :set_project
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET projects/1/tasks
   def index
@@ -23,10 +22,10 @@ class TasksController < ApplicationController
 
   # POST projects/1/tasks
   def create
+    @project =Project.find(params[:project_id])
     @task = @project.tasks.build(task_params)
-
     if @task.save
-      redirect_to(@task.project, notice: 'Task was successfully created.')
+      redirect_to project_path(@project)
     else
       render action: 'new'
     end
@@ -50,16 +49,12 @@ class TasksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = projects.find(params[:project_id])
-    end
+    
 
-    def set_task
-      @task = @project.tasks.find(params[:id])
-    end
+  
 
     # Only allow a trusted parameter "white list" through.
     def task_params
-      params.require(:task).permit(:name, :description, :status, :project_id)
+      params.require(:task).permit(:title, :project_id)
     end
 end
