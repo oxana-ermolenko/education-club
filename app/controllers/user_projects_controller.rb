@@ -25,8 +25,10 @@ class UserProjectsController < ApplicationController
   # POST /user_projects
   # POST /user_projects.json
   def create
-    @user_project = UserProject.new(user_project_params)
+      
+      @user_project = UserProject.new(user_project_params)
       if @user_project.save
+        
         redirect_to @user_project, notice: 'User project was successfully created.' 
       else
         render :new  

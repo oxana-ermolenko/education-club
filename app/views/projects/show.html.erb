@@ -15,6 +15,7 @@
       </a>
     </div>
   </div>
+
   <div class="twelve wide stretched column">
     <div class="ui segment">
       <div class="ui grid">
@@ -48,39 +49,101 @@
           <% end %>  
         </div>
 
-      <div class="four wide column">
-        <div class="ui right aligned">
-          <%= time_ago_in_words(@project.updated_at) %> ago
+        <div class="four wide column">
+          <div class="ui right aligned">
+            <%= time_ago_in_words(@project.updated_at) %> ago
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="ui padded green segment">
-      <div class="description">
-        <%= @project.details %>
-      </div>
-    </div>
-  
-      <div class="ui comments">
-        <h3 class="ui dividing header">Tasks</h3>
-        <% if @project.tasks != 0 %>
-          <div id="messages">
-            <%= render(partial: 'tasks/tasks', object: @task) %>
+      <div class="ui grid green segment">
+        <div class="sixteen wide column">
+          <div class="description">
+            <%= @project.details %>
           </div>
-        <% else %>
-          <h3> No Comments Yet! </h3>
-        <% end %>
-   
-        <% if user_signed_in? %>
-          <%= form_for([ @project, @task ], class: 'ui reply form') do |form| %>
-            <div class="field">
-              <%= form.text_area :title, placeholder: "Enter a task" %>
-            </div>
-            <div class="actions">
-              <%= form.submit "Add Reply" ,class: "ui submit basic button positive " %>
-            </div>
+        </div>
+
+        <div class="four wide column ">
+          <div class="ui segment heightask ">
+          <% if @project.users.include? current_user %>
+            <button class="ui icon positive basic btnModalAddTaskBacklog button">
+              <i class="add icon"></i>
+            </button>
+            <% end %>
+            <h4 class="ui center aligned header">Backlog</h4>
+            <% if @project.tasks != 0 %>
+              <% @tasks.each do |task| %>
+                <% if task.status === "backlog" %>
+                  
+                    <%= render(partial: 'tasks/task', object: task) %>
+                 
+                <% end %>
+              <% end %>
+            <% end %> 
+          </div>
+        </div>
+
+        <div class="four wide column ">
+          <div class="ui segment heightask">
+          <% if @project.users.include? current_user %>
+            <button class="ui icon positive basic btnModalAddTaskInProgress button">
+              <i class="add icon"></i>
+            </button>
           <% end %>
-        <% end %>
+            <h4 class="ui center aligned header">In Progrees</h4>
+            <% if @project.tasks != 0 %>
+              <% @tasks.each do |task| %>
+                <% if task.status === "in-progress" %>
+                  
+                    <%= render(partial: 'tasks/task', object: task) %>
+                 
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="four wide column ">
+          <div class="ui segment heightask">
+          <% if @project.users.include? current_user %>
+            <button class="ui icon positive basic btnModalAddTaskInReview button">
+              <i class="add icon"></i>
+            </button>
+          <% end %>
+            <h4 class="ui center aligned header">In Review</h4>
+
+            <% if @project.tasks != 0 %>
+              <% @tasks.each do |task| %>
+                <% if task.status === "in-review" %>
+                  
+                    <%= render(partial: 'tasks/task', object: task) %>
+               
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="four wide column ">
+          <div class="ui segment heightask">
+          <% if @project.users.include? current_user %>
+            <button class="ui icon positive basic btnModalAddTaskDone button">
+              <i class="add icon"></i>
+            </button>
+          <% end %>
+            <h4 class="ui center aligned header">Done</h4>
+
+            <% if @project.tasks != 0 %>
+              <% @tasks.each do |task| %>
+                <% if task.status === "done" %>
+                  
+                    <%= render(partial: 'tasks/task', object: task) %>
+                  
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -98,7 +161,7 @@
   </div> 
 </div>
 
-<div class="ui modal add">
+<div class="ui mini modal add">
   <i class="close icon"></i>
   <div class="ui row">
     <div class="ui four wide column segment">
@@ -107,10 +170,56 @@
         <%= render "add_form" %>
       </div>
     </div>
-  
+  </div>
 </div>
 
+<div class="ui modal addTaskBacklog ">
+  <i class="close icon"></i>
+  <div class="ui row">
+    <div class="ui four wide column segment">
+      <h2 class="ui center aligned dividing header">Add Task</h2>
+      <div class="ui form ">
+        <%= render "tasks/form_task_backlog" %>
+      </div>
+    </div>
+  </div> 
+</div>
 
+<div class="ui modal addTaskInProgress ">
+  <i class="close icon"></i>
+  <div class="ui row">
+    <div class="ui four wide column segment">
+      <h2 class="ui center aligned dividing header">Add Task</h2>
+      <div class="ui form ">
+        <%= render "tasks/form_task_in_progress" %>
+      </div>
+    </div>
+  </div> 
+</div>
+
+<div class="ui modal addTaskInReview ">
+  <i class="close icon"></i>
+  <div class="ui row">
+    <div class="ui four wide column segment">
+      <h2 class="ui center aligned dividing header">Add Task</h2>
+      <div class="ui form ">
+        <%= render "tasks/form_task_in_review" %>
+      </div>
+    </div>
+  </div> 
+</div>
+
+<div class="ui modal addTaskDone ">
+  <i class="close icon"></i>
+  <div class="ui row">
+    <div class="ui four wide column segment">
+      <h2 class="ui center aligned dividing header">Add Task</h2>
+      <div class="ui form ">
+        <%= render "tasks/form_task_done" %>
+      </div>
+    </div>
+  </div> 
+</div>
 
 
 

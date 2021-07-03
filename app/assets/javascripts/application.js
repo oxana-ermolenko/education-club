@@ -30,11 +30,32 @@ $(document).on('turbolinks:load', function() {
       .modal('setting', 'transition', 'vertical flip')
       .modal('show');
   });
-  $('.btnModalAdd').on('click', function() {
-    $('.ui.modal.add')
+  $('.btnModalAddTaskBacklog').on('click', function() {
+    $('.ui.modal.addTaskBacklog')
       .modal('setting', 'transition', 'vertical flip')
       .modal('show');
   });
+  $('.btnModalAddTaskDone').on('click', function() {
+    $('.ui.modal.addTaskDone')
+      .modal('setting', 'transition', 'vertical flip')
+      .modal('show');
+  });
+  $('.btnModalAddTaskInProgress').on('click', function() {
+    $('.ui.modal.addTaskInProgress')
+      .modal('setting', 'transition', 'vertical flip')
+      .modal('show');
+  });
+  $('.btnModalAddTaskInReview').on('click', function() {
+    $('.ui.modal.addTaskInReview')
+      .modal('setting', 'transition', 'vertical flip')
+      .modal('show');
+  });
+  $('.btnModalAdd').on('click', function() {
+    $('.ui.mini.modal.add')
+      .modal('setting', 'transition', 'vertical flip')
+      .modal('show');
+  });
+  
   $('.ui.dropdown').dropdown();
   $('.activating.element').popup();
 });

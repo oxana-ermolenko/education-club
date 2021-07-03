@@ -1,16 +1,14 @@
-<%= form_for @project do |form| %>
-  <div class="field">
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-    <% @project.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+<% User.all.each  do |user| %>
+  <div class="left floated author">
+          <%= image_tag user.avatar, class: 'ui avatar image' %> 
+          <%= user.full_name %>
+          <% if !@project.users.include? user %>
+          <%= link_to  add_project_path(@project, user_id: user.id), class: "ui icon basic button positive" do %>
+            <i class="add icon"></i>
+          <% end %>
+            
+        <% end %>
   </div>
-
-  
-
-
-  <div class="field">
-    <%= form.submit "Submit", class: "ui submit basic button positive " %>
-  </div>
+        
+    
 <% end %>

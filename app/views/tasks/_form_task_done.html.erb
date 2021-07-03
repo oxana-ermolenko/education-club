@@ -1,0 +1,44 @@
+<% if user_signed_in? %>
+  <%= form_for([ @project, @task ], class: 'ui reply form') do |form| %>
+    <% if @task.errors.any? %>
+      <div class="field" id="error_explanation">
+        <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+        <ul>
+          <% @task.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :status %><br />
+      <%= form.select :status, Task::STATUS_OPTIONS, selected: 'done', class: "form-control"  %>
+    </div>
+
+    <div class="field">
+      <%= form.label :title %><br />
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :description %><br />
+      <%= form.text_field :description, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :steps %><br />
+      <%= form.text_area :steps, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :priority %><br />
+      <%= form.select :priority, Task::PRIORITY_OPTIONS, {}, class: "form-control"  %>
+    </div>
+
+
+    <div class="actions">
+      <%= form.submit "Add Task", class: "ui submit basic button positive " %>
+    </div>
+  <% end %>
+<% end %>

@@ -15,6 +15,7 @@ class ProjectsController < ApplicationController
     @task = @project.tasks.build
     @tasks = @project.tasks.all
     
+    
   end
 
   def edit
@@ -31,6 +32,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    @project.users << user
     if @project.update(project_params)
       redirect_to @project, notice: "Project was successfully updated."
     else
@@ -41,6 +43,12 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     redirect_to projects_url, notice: "Project was successfully desproyed."
+  end
+
+  def add
+    @project = Project.find(params[:id])
+    @project.users << User.find(params[:user_id])
+     redirect_to @project
   end
   
   def add_user

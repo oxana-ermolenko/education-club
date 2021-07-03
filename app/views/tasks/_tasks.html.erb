@@ -1,3 +1,5 @@
 <% @tasks.each do |task| %>
+  <div class="ui segment">
   <%= render(partial: 'tasks/task', object: task) %>
+  </div>
 <% end %>

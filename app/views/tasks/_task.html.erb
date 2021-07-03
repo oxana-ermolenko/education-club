@@ -1,12 +1,27 @@
-<div class="comment">
+
+
+
+
+
+
     
-    <div class="content">
+      <div class="ui segment">
+      <% if @project.users.include? current_user %>
+      <%= link_to  project_tasks_path(task),  class: "ui right ribbon label" do %>
+        <%= task.priority %>
+        <% end %>
+        <% end %> 
+        
+    
       
-      <div class="metadata">
-        <span class="date"> <%= time_ago_in_words(task.updated_at) %> ago</span>
-      </div>
-      <div class="text">
-        <%= task.title %>
-      </div>
+      <div class="right floated time"><%= task.title %></div>
+        <span class="right floated time"><%= time_ago_in_words(task.updated_at) %> ago</span>             
+      
     </div>
-  </div>
+    
+        
+      
+    
+  
+    
+ 
