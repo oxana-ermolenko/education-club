@@ -16,139 +16,17 @@
     </div>
   </div>
 
+
   <div class="twelve wide stretched column">
     <div class="ui segment">
       <div class="ui grid">
-        <div class="four wide column">
-          <%= link_to  projects_path, class: "ui basic button positive" do %>
-            <i class="angle left icon"></i> Back
-          <% end %>
-          <% if @project.users.include? current_user %>
-            <button class="ui positive basic btnModalEdit button">
-                <i class="edit icon"></i>Edit
-            </button>
-          <% end %>   
-        </div> 
-
-        <div class="four wide column">
-          <h2 class="ui header">
-            <%= @project.title.capitalize %>
-          </h2>
-        </div>
-
-        <div class="four wide column">
-          <% if @project.users.include? current_user %>
-            <button class="ui icon positive basic btnModalAdd button">
-                <i class="add icon"></i>
-            </button>
-          <% end %>
-          <% if @project.users.any? %>
-            <% @project.users.each do |user| %>
-              <%= image_tag user.avatar, class: 'ui avatar image activating element', data: {title: user.full_name} %>
-            <% end %>
-          <% end %>  
-        </div>
-
-        <div class="four wide column">
-          <div class="ui right aligned">
-            <%= time_ago_in_words(@project.updated_at) %> ago
-          </div>
-        </div>
-      </div>
-
-      <div class="ui grid green segment">
-        <div class="sixteen wide column">
-          <div class="description">
-            <%= @project.details %>
-          </div>
-        </div>
-
-        <div class="four wide column ">
-          <div class="ui segment heightask ">
-          <% if @project.users.include? current_user %>
-            <button class="ui icon positive basic btnModalAddTaskBacklog button">
-              <i class="add icon"></i>
-            </button>
-            <% end %>
-            <h4 class="ui center aligned header">Backlog</h4>
-            <% if @project.tasks != 0 %>
-              <% @tasks.each do |task| %>
-                <% if task.status === "backlog" %>
-                  
-                    <%= render(partial: 'tasks/task', object: task) %>
-                 
-                <% end %>
-              <% end %>
-            <% end %> 
-          </div>
-        </div>
-
-        <div class="four wide column ">
-          <div class="ui segment heightask">
-          <% if @project.users.include? current_user %>
-            <button class="ui icon positive basic btnModalAddTaskInProgress button">
-              <i class="add icon"></i>
-            </button>
-          <% end %>
-            <h4 class="ui center aligned header">In Progrees</h4>
-            <% if @project.tasks != 0 %>
-              <% @tasks.each do |task| %>
-                <% if task.status === "in-progress" %>
-                  
-                    <%= render(partial: 'tasks/task', object: task) %>
-                 
-                <% end %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="four wide column ">
-          <div class="ui segment heightask">
-          <% if @project.users.include? current_user %>
-            <button class="ui icon positive basic btnModalAddTaskInReview button">
-              <i class="add icon"></i>
-            </button>
-          <% end %>
-            <h4 class="ui center aligned header">In Review</h4>
-
-            <% if @project.tasks != 0 %>
-              <% @tasks.each do |task| %>
-                <% if task.status === "in-review" %>
-                  
-                    <%= render(partial: 'tasks/task', object: task) %>
-               
-                <% end %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="four wide column ">
-          <div class="ui segment heightask">
-          <% if @project.users.include? current_user %>
-            <button class="ui icon positive basic btnModalAddTaskDone button">
-              <i class="add icon"></i>
-            </button>
-          <% end %>
-            <h4 class="ui center aligned header">Done</h4>
-
-            <% if @project.tasks != 0 %>
-              <% @tasks.each do |task| %>
-                <% if task.status === "done" %>
-                  
-                    <%= render(partial: 'tasks/task', object: task) %>
-                  
-                <% end %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
+        <%= render 'board', obj: @project %>
+        <%= render 'tasks/tasks', obj: @tasks %>
       </div>
     </div>
   </div>
 </div>
-
+ 
 <div class="ui modal edit ">
   <i class="close icon"></i>
   <div class="ui row">
@@ -165,7 +43,7 @@
   <i class="close icon"></i>
   <div class="ui row">
     <div class="ui four wide column segment">
-      <h2 class="ui center aligned dividing header">Add User</h2>
+      <h2 class="ui center aligned dividing header">Add a Member to a Team</h2>
       <div class="ui form ">
         <%= render "add_form" %>
       </div>
@@ -220,6 +98,8 @@
     </div>
   </div> 
 </div>
+
+
 
 
 

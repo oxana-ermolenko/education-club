@@ -1,23 +1,28 @@
-
-
-
-
-
-
-    
-      <div class="ui segment">
-      <% if @project.users.include? current_user %>
-      <%= link_to  project_tasks_path(task),  class: "ui right ribbon label" do %>
-        <%= task.priority %>
-        <% end %>
-        <% end %> 
-        
-    
-      
-      <div class="right floated time"><%= task.title %></div>
-        <span class="right floated time"><%= time_ago_in_words(task.updated_at) %> ago</span>             
-      
+<div class="ui segment green ">
+  <div class="column">
+    <a class="ui right ribbon label">
+      <%= task.priority %>
+    </a>   
+    <span class="left aligned time"><%= time_ago_in_words(task.updated_at) %> ago</span>
+    <h4 class="ui header"><%= task.title %></h4>
+    <div class="description">
+      <p>Description: <%= truncate(task.description, length: 100) %></p>
     </div>
+    <div class="description">
+      <p>Steps: <%= truncate(task.steps, length: 100) %></p>
+    </div>
+    <% if @project.users.include? current_user %>
+      <%= link_to  edit_project_task_path(task.project, task),  class: "ui icon positive basic button" do %>
+        <i class="edit icon"></i>Edit
+      <% end %>
+      <%= link_to  [task.project, task], method: :delete, data: { confirm: 'Are you sure?' },  class: "ui icon red basic button" do %>
+        <i class="trash icon"></i>Destroy
+      <% end %>
+    <% end %> 
+  </div>
+</div>
+
+
     
         
       

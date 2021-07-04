@@ -30,6 +30,11 @@ $(document).on('turbolinks:load', function() {
       .modal('setting', 'transition', 'vertical flip')
       .modal('show');
   });
+  $('.btnModalEditTask').on('click', function() {
+    $('.ui.modal.editTask')
+      .modal('setting', 'transition', 'vertical flip')
+      .modal('show');
+  });
   $('.btnModalAddTaskBacklog').on('click', function() {
     $('.ui.modal.addTaskBacklog')
       .modal('setting', 'transition', 'vertical flip')

@@ -1,12 +1,34 @@
-<%= link_to 'Back', @project, class: "btn btn-secondary mb-3" %>
-
-<div class="card">
-    <div class="card-body">
-        <h2 class="card-title mb-4">
-          <span>Editing Task</span>
-
-        </h2>
-
-        <%= render 'form' %>
+<div class="ui grid custom_margin">
+  <div class="two wide column">
+    <div class="ui vertical fluid tabular menu">
+      <a class="item">
+        Profile
+      </a>
+      <a class="active item">
+        Projects
+      </a>
+      <a class="item">
+        My Projects
+      </a>
+      <a class="item">
+        Messenger
+      </a>
     </div>
+  </div>
+  <div class="twelve wide  stretched column">
+    <div class="ui grid green center aligned segment">
+      <div class="sixteen wide  column">
+        <div class="description">
+          <%= @project.details %>
+        </div>
+      </div>
+    
+      <div class="ui six wide  column segment">
+        <h2 class="ui center aligned dividing header">Edit Task</h2>
+        <div class="ui form ">
+          <%= render "tasks/form_task", task: @task %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

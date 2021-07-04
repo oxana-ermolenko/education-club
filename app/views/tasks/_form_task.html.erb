@@ -13,7 +13,7 @@
 
     <div class="field">
       <%= form.label :status %><br />
-      <%= form.select :status, Task::STATUS_OPTIONS, selected: 'done', class: "form-control"  %>
+      <%= form.select :status, Task::STATUS_OPTIONS, {}, class: "form-control"  %>
     </div>
 
     <div class="field">
@@ -31,9 +31,13 @@
       <%= form.text_area :steps, class: "form-control" %>
     </div>
 
+    <div class="field">
+      <%= form.label :priority %><br />
+      <%= form.select :priority, Task::PRIORITY_OPTIONS, {}, class: "form-control"  %>
+    </div>
 
     <div class="actions">
-      <%= form.submit "Add Task", class: "ui submit basic button positive " %>
+      <%= form.submit "Edit Task", class: "ui submit basic button positive " %>
     </div>
   <% end %>
 <% end %>
