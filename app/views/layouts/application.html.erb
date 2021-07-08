@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Education Club</title>
-    <%= favicon_link_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,10 +14,15 @@
   <body>
     <%= render 'layouts/nav' %>
     <%= yield %>
+    <div id='remote_container'></div>
     <div class="ui center aligned">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     </div>
-    
+    <script type="text/javascript">
+$(document).ready(function() {
+  $('input[class="daterange"]').daterangepicker();
+});
+</script>
   </body>
 </html>

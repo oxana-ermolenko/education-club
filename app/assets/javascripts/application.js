@@ -13,11 +13,15 @@
 //= require jquery
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 //= require semantic-ui
 //= require semantic-ui/modal
 //= require semantic-ui/dropdown
-//= require cable
+
+//= require bootstrap-sprockets
+//= require moment
+//= require fullcalendar
+//= require daterangepicker
+//= require_tree .
 
 $(document).on('turbolinks:load', function() {
   $('.btnModal').on('click', function() {
@@ -63,4 +67,9 @@ $(document).on('turbolinks:load', function() {
   
   $('.ui.dropdown').dropdown();
   $('.activating.element').popup();
+  
+   
 });
+
+
+
