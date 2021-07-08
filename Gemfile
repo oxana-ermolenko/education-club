@@ -17,6 +17,12 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 #Adding webpacker for React
 gem "webpacker", "~> 3"
+#gem 'fullcalendar-rails'
+#gem 'momentjs-rails'
+gem 'faker'
+gem 'simple_form'
+gem 'bootstrap-sass'
+#gem 'bootstrap-daterangepicker-rails'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 gem "will_paginate_semantic_ui"
