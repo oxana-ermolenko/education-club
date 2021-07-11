@@ -64,4 +64,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   #config.action_cable.disable_request_forgery_protection = true
   config.action_cable.allowed_request_origins = ['http://localhost:3000']
+  config.web_console.permissions = '10.0.2.2'
 end

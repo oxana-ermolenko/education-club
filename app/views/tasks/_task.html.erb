@@ -13,10 +13,10 @@
     </div>
     <% if @project.users.include? current_user %>
       <%= link_to  edit_project_task_path(task.project, task),  class: "ui icon positive basic button" do %>
-        <i class="edit icon"></i>Edit
+        <i class="edit icon"></i>
       <% end %>
       <%= link_to  [task.project, task], method: :delete, data: { confirm: 'Are you sure?' },  class: "ui icon red basic button" do %>
-        <i class="trash icon"></i>Destroy
+        <i class="trash icon"></i>
       <% end %>
     <% end %> 
   </div>

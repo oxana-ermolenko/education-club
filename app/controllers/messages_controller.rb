@@ -1,16 +1,18 @@
 class MessagesController < ApplicationController
   
+  before_action :load_entities
+
   def create
-    message = current_user.messages.build(message_params)
-    if message.save
-      redirect_to chatrooms_path
-    end
+    @message = Message.create user: current_user,
+                                       room: @room,
+                                       body: params.dig(:message, :body)
+
+   
   end
 
-  private
+  protected
 
-  def message_params
-    params.require(:message).permit(:body)
+  def load_entities
+    @room = Room.find params.dig(:message, :room_id)
   end
-
 end

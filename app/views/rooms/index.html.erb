@@ -5,53 +5,48 @@
         Profile
       </a>
       <a class="active item">
-        Projects
+        Messenger
       </a>
       <a class="item">
-        My Projects
+        My Messenger
       </a>
       <a class="item">
         My Calendar
       </a>
     </div>
   </div>
-
   <div class="twelve wide stretched column">
     <div class="ui segment">
       <div class="ui grid">
 
         <div class="four wide column">
-          <button class="ui positive basic btnModal button">
-            <i class="gamepad icon"></i>New
+          <button class="ui positive basic btnModalNewRoom button">
+            <i class="comment alternate icon"></i>New
           </button>
         </div>
       </div>
       <div class="ui grid">
-        <%= render 'project', obj: @projects %>
+        <%= render 'room', obj: @rooms %>
       </div>
       <div class="ui two column centered grid custom_margin_bottom">
-      <%= will_paginate @projects, renderer: WillPaginateSemanticUi::ActionView::Renderer %>
+      <%= will_paginate @rooms, renderer: WillPaginateSemanticUi::ActionView::Renderer %>
       </div>
     </div>
-    <div class='calendar'></div>
-  </div>
-
-  <div class="ui test modal ">
-    <i class="close icon"></i>
-    <div class="ui row">
-    <div class="ui four wide column segment">
-      <h2 class="ui center aligned dividing header">New Project</h2>
-      <div class="ui form ">
-        <%= render "form" %>
-      </div>
-    </div>
-  </div>  
+ </div>
+ <div class="ui test modal ">
+ <i class="close icon"></i>
+ <div class="ui row">
+ <div class="ui four wide column segment">
+   <h2 class="ui center aligned dividing header">New Room</h2>
+   <div class="ui form ">
+    <%= render "form" %>
+   </div>
+ </div>
+</div>  
 
 </div>
 
 
 
 
-
-
-  
+      

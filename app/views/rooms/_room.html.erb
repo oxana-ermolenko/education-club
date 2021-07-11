@@ -1,0 +1,13 @@
+  
+<% obj.each do |room| %>
+  <div class="four wide column">
+    <%= link_to  room_path(room),  class: "ui green card" do %>
+      <div class="content">
+        <div class="header"><%= room.name.capitalize %></div>
+        <div class="meta">
+          <span class="right floated time"><%= time_ago_in_words(room.updated_at) %> ago</span>  
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

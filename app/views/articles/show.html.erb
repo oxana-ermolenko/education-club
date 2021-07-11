@@ -25,12 +25,12 @@
         <% end %>
         <% if current_user == @article.user %>
         <button class="ui positive basic btnModalEdit button">
-            <i class="edit icon"></i>Edit
+            <i class="edit icon"></i>
         </button>
           
         <%= link_to  article_path(@article), method: :delete, 
         data: { confirm: "Are you sure you want to delete this article?" }, class: "ui basic button red" do %>
-          <i class="trash icon"></i> Delete
+          <i class="trash icon"></i> 
         <% end %>
         <% end %>   
       </div>  

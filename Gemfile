@@ -21,7 +21,7 @@ gem "webpacker", "~> 3"
 #gem 'momentjs-rails'
 gem 'faker'
 gem 'simple_form'
-gem 'bootstrap-sass'
+#gem 'bootstrap-sass'
 #gem 'bootstrap-daterangepicker-rails'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

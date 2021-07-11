@@ -17,7 +17,7 @@
 //= require semantic-ui/modal
 //= require semantic-ui/dropdown
 
-//= require bootstrap-sprockets
+// require bootstrap-sprockets
 //= require moment
 //= require fullcalendar
 //= require daterangepicker
@@ -64,10 +64,17 @@ $(document).on('turbolinks:load', function() {
       .modal('setting', 'transition', 'vertical flip')
       .modal('show');
   });
+  $('.btnModalNewRoom').on('click', function() {
+    $('.ui.modal')
+      .modal('setting', 'transition', 'vertical flip')
+      .modal('show');
+  });
   
   $('.ui.dropdown').dropdown();
   $('.activating.element').popup();
-  
+  $('#new_message').on('ajax:success', function(a, b,c ) {
+    $(this).find('input[type="text"]').val('');
+  });
    
 });
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rooms
   resources :events
   devise_for :users
   resources :events
@@ -7,9 +8,10 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :categories, except: [:destroy]
-
-  get '/chat', to: 'chatrooms#index'
+  mount ActionCable.server => '/cable'
+  
   resources :messages
+  resources :rooms
   resources :user_projects
   resources :projects do
     member do

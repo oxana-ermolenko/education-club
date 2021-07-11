@@ -1,0 +1,13 @@
+<%= form_for @room do |form| %>
+  <div class="field">
+    <%= form.label :name %><br>
+    <%= form.text_field :name, autofocus: true, placeholder:"Title" %>
+    <% @room.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= form.submit "Submit", class: "ui submit basic button positive " %>
+  </div>
+  
+<% end %>
