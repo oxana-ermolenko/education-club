@@ -1,4 +1,7 @@
 class Project < ApplicationRecord
+  validates :title, presence: true
+  validates :details, presence: true
+ 
   has_many :user_projects
   has_many :users, through: :user_projects
   has_many :tasks, dependent: :destroy

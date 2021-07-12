@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
   validates :title, presence: true
-  validates :body, presence: true, length: { minimum: 10 }
-
+  validates :body, presence: true, length: { minimum: 2, maximum: 10000 }
+  validates :user_id, presence: true
   default_scope -> { order(updated_at: :desc)} 
   belongs_to :user
   has_many :comments, dependent: :destroy
