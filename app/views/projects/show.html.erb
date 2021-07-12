@@ -1,18 +1,18 @@
 <div class="ui grid custom_margin">
   <div class="two wide column">
     <div class="ui vertical fluid tabular menu">
-      <a class="item">
-        Profile
-      </a>
-      <a class="active item">
-        Projects
-      </a>
+      <%= link_to projects_path, class: "item" do %>
+        <i class="file altenate icon"></i> Profile
+      <% end %>
+      <%= link_to projects_path, class: "active item" do %>
+        <i class="gamepad  icon"></i> Projects
+      <% end %>
       <a class="item">
         My Projects
       </a>
-      <a class="item">
-        Messenger
-      </a>
+      <%= link_to calendar_path, class: "active item" do %>
+        <i class="columns icon"></i> My Calendar
+      <% end %>
     </div>
   </div>
 

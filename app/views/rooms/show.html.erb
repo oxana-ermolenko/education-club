@@ -1,54 +1,96 @@
-<h1>
-  <%= @room.name %>
-</h1>
-
-<div class="row">
-  <div class="col-12 col-md-3">
-    <%= render partial: 'rooms' %>
+<div class="ui grid custom_margin">
+  <div class="two wide column">
+    <div class="ui vertical fluid tabular menu">
+      <%= link_to projects_path, class: "item" do %>
+        <i class="file altenate icon"></i> Profile
+      <% end %>
+      <%= link_to rooms_path, class: "active item" do %>
+        <i class="comment alternate icon"></i> Messengers
+      <% end %>
+      <a class="item">
+        My Messenger
+      </a>
+      <%= link_to calendar_path, class: "item" do %>
+        <i class="columns icon"></i> My Calendar
+      <% end %>
+    </div>
   </div>
-
-  <div class="col">
-    <div class="chat">
-      <% @messages.each do |message| %>
-        <div class="chat-message-container">
-          <div class="row no-gutters">
-          <div class="col-auto text-center">
-          <%= image_tag message.user.avatar, class: 'ui avatar image' %>
-          
+  <div class="twelve wide stretched column">
+    <div class="ui segment">
+    
+      <div class="ui grid">
+        <div class="four wide column">   
+          <%= link_to  rooms_path, class: "ui basic button positive" do %>
+            <i class="angle left icon"></i> Back
+          <% end %>
         </div>
-
-            <div class="col">
-              <div class="message-content">
-                <p class="mb-1">
-                  <%= message.body %>
-                </p>
-
-                <div class="text-right">
-                  <small>
-                    <%= message.created_at %>
-                  </small>
+      </div>
+      <h4 class="ui center aligned medium icon header">
+        <% if @room.avatar? %>         
+          <%= image_tag @room.avatar %>             
+        <% end %>
+        <div>
+          <%= @room.name %>
+        </div>
+      </h4>
+      <div class="twelve wide centered column">
+        <div class="ui segment">      
+          <br><br>    
+          <% @messages.each do |message| %>
+            <div class="ui comments">
+              <div class="comment">
+                <a class="avatar">
+                  <%= image_tag message.user.avatar, class: 'ui avatar image' %>
+                </a>
+                <div class="content">
+                  <a class="author">
+                    <%= message.user.full_name %>
+                  </a>
+                  <div class="metadata">
+                    <div class="date"><%= time_ago_in_words(message.created_at) %></div>
+                  </div>
+                  <div class="text">
+                    <%= message.body %>
+                  </div>
                 </div>
               </div>
+            </div>      
+          <% end %>
+          <br>
+          <div class="ui fluid raised card chatbox">
+            <div class="extra content">
+              <%= form_for(@message, html: {class: "ui reply form", role: "form"}, remote: true) do |f| %>
+                <div class="field">
+                  <div class="ui fluid icon input">
+                    <%= f.text_field :body, as: :string,
+                                      wrapper: false,
+                                      label: false,
+                                      input_html: {
+                                        class: 'chat-input'
+                    } %>
+                    
+                    <%= f.button '<i class="bordered inverted green edit icon"></i>'.html_safe %>        
+                  </div>
+                </div>      
+                <%= f.number_field :room_id, as: :hidden, class: "hidden content" %>  
+              <% end %>
+              
+    
             </div>
           </div>
         </div>
-      <% end %>
-    </div>
-
-    <%= form_for @message, remote: true do |form| %>
-      <div class="input-group mb-3">
-        <%= form.text_area :body, as: :string,
-                                 wrapper: false,
-                                 label: false,
-                                 input_html: {
-                                   class: 'chat-input'
-                                 } %>
-        <div class="input-group-append">
-          <%= form.submit "Send", class: 'btn btn-primary chat-input' %>
-        </div>
       </div>
-
-      <%= form.number_field :room_id, as: :hidden %>
-    <% end %>
+    </div>
   </div>
 </div>
+<br><br>
+		<br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+		<br><br>
+    <br><br>
+        
+  
+
+    

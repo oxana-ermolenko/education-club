@@ -39,7 +39,26 @@ $widescreen-monitor-breakpoint: 1920px !default;
   height: 57em;
   overflow: 'auto' !important;
 }
- body {
- font-family: 'Lato' !important;
+ html, body {
+  font-family: 'Lato' !important;
+  margin: 0 !important;
+  height: 100% !important;
+  
  }
- 
+ .footer{
+  position: fixed !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  z-index: 10 !important;
+  
+ }
+ .pl {
+   padding-left: 7px;
+ }
+ .calendar {
+   z-index: -10 !important;
+ }
+ .hidden {
+   display: none;
+ }
+

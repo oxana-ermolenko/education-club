@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
   before_action :load_entities
 
   def index
-    @rooms = Room.paginate(page: params[:page], per_page: 8)
+    @rooms = Room.paginate(page: params[:page], per_page: 12)
     @room = Room.new
   end
 
@@ -49,7 +49,7 @@ class RoomsController < ApplicationController
   end
 
   def permitted_parameters
-    params.require(:room).permit(:name)
+    params.require(:room).permit(:name, :avatar)
   end
 end
 

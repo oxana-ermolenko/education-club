@@ -6,8 +6,13 @@ class MessagesController < ApplicationController
     @message = Message.create user: current_user,
                                        room: @room,
                                        body: params.dig(:message, :body)
-
-   
+if @message.save
+#ActionCable.server.broadcast "comments_channel", render(partial: 'comments/comment', object: @comment)
+  redirect_to room_path(@room)
+    else
+      flash.now[:danger] = "error"
+        redirect_to :back
+  end
   end
 
   protected

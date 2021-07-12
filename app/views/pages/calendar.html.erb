@@ -1,0 +1,23 @@
+<div class="ui grid custom_margin">
+  <div class="two wide column">
+    <div class="ui vertical fluid tabular menu">
+      <%= link_to projects_path, class: "item" do %>
+        <i class="file altenate icon"></i> Profile
+      <% end %>
+      <%= link_to rooms_path, class: "item" do %>
+        <i class="comment alternate icon"></i> Messengers
+      <% end %>
+      <%= link_to projects_path, class: "item" do %>
+        <i class="gamepad  icon"></i> Projects
+      <% end %>
+      <%= link_to calendar_path, class: "active item" do %>
+        <i class="columns icon"></i> My Calendar
+      <% end %>
+    </div>
+  </div>
+  <div class="twelve wide stretched column">
+    <div class="ui segment">
+      <div class="calendar"></div>
+    </div>
+ </div>
+ 

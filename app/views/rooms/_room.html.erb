@@ -4,6 +4,13 @@
     <%= link_to  room_path(room),  class: "ui green card" do %>
       <div class="content">
         <div class="header"><%= room.name.capitalize %></div>
+        
+        <% if room.avatar? %>    
+          <div class="right floated author pl">
+            <%= image_tag room.avatar, class: 'ui avatar image' %>
+          </div>
+             
+        <% end %>
         <div class="meta">
           <span class="right floated time"><%= time_ago_in_words(room.updated_at) %> ago</span>  
         </div>

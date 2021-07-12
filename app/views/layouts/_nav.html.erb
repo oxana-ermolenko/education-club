@@ -1,5 +1,7 @@
 <div class="ui top inverted fixed menu">
-  <a href="#" class="item"><strong>Education Club</strong></a>
+<%= link_to root_path, class: "item" do %>
+  <strong>Education Club</strong>
+  <% end %>
   <% unless user_signed_in?  %>
     <%= link_to root_path, class: "item" do %>
       <i class="home icon"></i> Home
