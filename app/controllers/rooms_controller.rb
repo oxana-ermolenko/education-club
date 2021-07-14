@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
   before_action :load_entities
 
   def index
-    @rooms = Room.paginate(page: params[:page], per_page: 12)
+    @rooms = Room.paginate(page: params[:page], per_page: 8)
     @room = Room.new
   end
 

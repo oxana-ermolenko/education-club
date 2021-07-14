@@ -5,7 +5,7 @@
         <i class="file altenate icon"></i> Profile
       <% end %>
       <%= link_to articles_path, class: "active item" do %>
-        <i class="paper plane icon"></i> Journals
+        <i class="paper plane icon"></i> Journal
       <% end %>
       <a class="item">
         My Journal
@@ -66,7 +66,7 @@
   </div>
 
 
-    <div class="ui comments">
+    <div class="ui comments ">
       <h3 class="ui dividing header">Comments</h3>
       <% if @article.comments != 0 %>
         <div id="messages">
@@ -92,17 +92,12 @@
     </div>
   </div>
 </div>
+<div class="mb"></div>
 
 
 
 
-
-
-
-
-
-
-<div class="ui test modal ">
+<div class="ui test modal edit">
   <i class="close icon"></i>
   
   <div class="ui row">
@@ -115,3 +110,4 @@
     </div>
   </div> 
 </div>
+

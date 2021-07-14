@@ -5,18 +5,18 @@
         <i class="file altenate icon"></i> Profile
       <% end %>
       <%= link_to projects_path, class: "active item" do %>
-        <i class="gamepad  icon"></i> Projects
+        <i class="gamepad  icon"></i> Project
       <% end %>     
       <a class="item">
-        My Projects
+        My Project
       </a>
-      <%= link_to calendar_path, class: "active item" do %>
+      <%= link_to calendar_path, class: "item" do %>
         <i class="columns icon"></i> My Calendar
       <% end %>
     </div>
   </div>
 
-  <div class="twelve wide stretched column">
+  <div class="twelve wide stretched column ">
     <div class="ui segment">
       <div class="ui grid">
 
@@ -26,7 +26,7 @@
           </button>
         </div>
       </div>
-      <div class="ui grid">
+      <div class="ui grid project">
         <%= render 'project', obj: @projects %>
       </div>
       <div class="ui two column centered grid custom_margin_bottom">
@@ -35,7 +35,8 @@
     </div>
     <div class='calendar'></div>
   </div>
-
+  <div class="mb"></div>
+  
   <div class="ui test modal ">
     <i class="close icon"></i>
     <div class="ui row">

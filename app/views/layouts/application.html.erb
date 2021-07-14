@@ -14,15 +14,17 @@
 
   <body>
     <%= render 'layouts/nav' %>
-    
-    <%= yield %>
-    
-    <%= render 'layouts/footer' %>
-    <div id='remote_container'></div>
     <div class="ui center aligned">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     </div>
     
+    <%= yield %>
+    
+    
+    <div id='remote_container'></div>
+    
+    <%= render 'layouts/footer' %>
   </body>
+  
 </html>

@@ -1,6 +1,6 @@
-<div class="ui top inverted fixed menu">
-<%= link_to root_path, class: "item" do %>
-  <strong>Education Club</strong>
+<div class="ui top inverted fixed menu stackable">
+  <%= link_to root_path, class: "item" do %>
+    <strong>Education Club</strong>
   <% end %>
   <% unless user_signed_in?  %>
     <%= link_to root_path, class: "item" do %>
@@ -44,4 +44,11 @@
 
     <% end %>
   </div>
+  
+	<div class="hamburger">
+	    <span class="hamburger-bun"></span>
+	    <span class="hamburger-patty"></span>
+	    <span class="hamburger-bun"></span>
+	</div>
 </div>
+

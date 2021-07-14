@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @project.users << user
+    
     if @project.update(project_params)
       redirect_to @project, notice: "Project was successfully updated."
     else
